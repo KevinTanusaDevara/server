@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\JenisTransaksiController;
 use App\Http\Controllers\BuktiPembayaranController;
+use App\Http\Controllers\StatusPembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ Route::get('logout', 'AuthController@logout');
 
 //*Profile
 Route::get('profile/{id}', 'UserController@user');
-Route::update('profile/update/{id}', 'UserController@update');
+Route::put('profile/{id}', 'UserController@update');
 
 //*Transaksi
 Route::get('transaksi', 'TransaksiController@index');
@@ -34,37 +36,37 @@ Route::get('transaksi/{id}', 'TransaksiController@show');
 Route::post('transaksi', 'TransaksiController@store');
 Route::put('transaksi/{id}', 'TransaksiController@update');
 Route::delete('transaksi/{id}', 'TransaksiController@destroy');
-Route::get('transaksi/search/{name}', [TransaksiController::class, 'search']);
-Route::post('transaksi/searchperiod', [TransaksiController::class, 'searchPeriod']);
+Route::get('transaksi/search/{name}', 'TransaksiController@search');
+Route::post('transaksi/searchperiod', 'TransaksiController@searchPeriod');
 
 //*Jenis Transaksi
-Route::get('jenistransaksi', [JenisTransaksiController::class, 'index']);
-Route::get('jenistransaksi/{id}', [JenisTransaksiController::class, 'show']);
-Route::get('jenistransaksi/search/{name}', [JenisTransaksiController::class, 'search']);
-Route::post('jenistransaksi', [JenisTransaksiController::class, 'store']);
-Route::put('jenistransaksi/{id}', [JenisTransaksiController::class, 'update']);
-Route::delete('jenistransaksi/{id}', [JenisTransaksiController::class, 'destroy']);
+Route::get('jenistransaksi', 'JenisTransaksiController@index');
+Route::get('jenistransaksi/{id}', 'JenisTransaksiController@show');
+Route::post('jenistransaksi', 'JenisTransaksiController@store');
+Route::put('jenistransaksi/{id}', 'JenisTransaksiController@update');
+Route::delete('jenistransaksi/{id}', 'JenisTransaksiController@destroy');
+Route::get('jenistransaksi/search/{name}', 'JenisTransaksiController@search');
 
 //*Role
-Route::get('role', [RoleController::class, 'index']);
-Route::get('role/{id}', [RoleController::class, 'show']);
-Route::get('role/search/{name}', [RoleController::class, 'search']);
-Route::post('role', [RoleController::class, 'store']);
-Route::put('role/{id}', [RoleController::class, 'update']);
-Route::delete('role/{id}', [RoleController::class, 'destroy']);
+Route::get('role', 'RoleController@index');
+Route::get('role/{id}', 'RoleController@show');
+Route::post('role', 'RoleController@store');
+Route::put('role/{id}', 'RoleController@update');
+Route::delete('role/{id}', 'RoleController@destroy');
+Route::get('role/search/{name}', 'RoleController@search');
 
 //*Bukti Pembayaran
-Route::get('buktipembayaran', [BuktiPembayaranController::class, 'index']);
-Route::get('buktipembayaran/{id}', [BuktiPembayaranController::class, 'show']);
-Route::get('buktipembayaran/search/{name}', [BuktiPembayaranController::class, 'search']);
-Route::post('buktipembayaran', [BuktiPembayaranController::class, 'store']);
-Route::put('buktipembayaran/{id}', [BuktiPembayaranController::class, 'update']);
-Route::delete('buktipembayaran/{id}', [BuktiPembayaranController::class, 'destroy']);
+Route::get('buktipembayaran', 'BuktiPembayaranController@index');
+Route::get('buktipembayaran/{id}', 'BuktiPembayaranController@show');
+Route::post('buktipembayaran', 'BuktiPembayaranController@store');
+Route::put('buktipembayaran/{id}', 'BuktiPembayaranController@update');
+Route::delete('buktipembayaran/{id}', 'BuktiPembayaranController@destroy');
+Route::get('buktipembayaran/search/{name}', 'BuktiPembayaranController@search');
 
 //*Status Pembayaran
-Route::get('statuspembayaran', [StatusPembayaranController::class, 'index']);
-Route::get('statuspembayaran/{id}', [StatusPembayaranController::class, 'show']);
-Route::get('statuspembayaran/search/{name}', [StatusPembayaranController::class, 'search']);
-Route::post('statuspembayaran', [StatusPembayaranController::class, 'store']);
-Route::put('statuspembayaran/{id}', [StatusPembayaranController::class, 'update']);
-Route::delete('statuspembayaran/{id}', [StatusPembayaranController::class, 'destroy']);
+Route::get('statuspembayaran', 'StatusPembayaranController@index');
+Route::get('statuspembayaran/{id}', 'StatusPembayaranController@show');
+Route::post('statuspembayaran', 'StatusPembayaranController@store');
+Route::put('statuspembayaran/{id}', 'StatusPembayaranController@update');
+Route::delete('statuspembayaran/{id}', 'StatusPembayaranController@destroy');
+Route::get('statuspembayaran/search/{name}', 'StatusPembayaranController@search');
