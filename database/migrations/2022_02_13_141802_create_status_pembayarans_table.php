@@ -14,7 +14,7 @@ class CreateStatusPembayaransTable extends Migration
     public function up()
     {
         Schema::create('status_pembayarans', function (Blueprint $table) {
-            $table->bigIncrements('status_pembayaran_id');
+            $table->bigIncrements('id');
             $table->string('status_pembayaran');
             $table->timestamps();
         });

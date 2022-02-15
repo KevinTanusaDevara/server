@@ -14,7 +14,7 @@ class CreateTransaksisTable extends Migration
     public function up()
     {
         Schema::create('transaksis', function (Blueprint $table) {
-            $table->bigIncrements('transaksi_id');
+            $table->bigIncrements('id');
             $table->date('tanggal_transaksi');
             $table->unsignedBigInteger('jenis_transaksi_id');
             $table->string('nominal_transaksi');
@@ -25,10 +25,10 @@ class CreateTransaksisTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('jenis_transaksi_id')->references('jenis_transaksi_id')->on('jenis_transaksis');
-            $table->foreign('bukti_pembayaran_id')->references('bukti_pembayaran_id')->on('bukti_pembayarans');
-            $table->foreign('status_pembayaran_id')->references('status_pembayaran_id')->on('status_pembayarans');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('jenis_transaksi_id')->references('id')->on('jenis_transaksis');
+            $table->foreign('bukti_pembayaran_id')->references('id')->on('bukti_pembayarans');
+            $table->foreign('status_pembayaran_id')->references('id')->on('status_pembayarans');
         });
     }
 

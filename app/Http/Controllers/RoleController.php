@@ -9,7 +9,11 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return Role::all();
+        $data = Role::all();
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -18,12 +22,20 @@ class RoleController extends Controller
             'role' => 'required|unique:roles',
         ]);
 
-        return Role::create($request->all());
+        $data = Role::create($request->all());
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function show($id)
     {
-        return Role::find($id);
+        $data = Role::find($id);
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -33,16 +45,27 @@ class RoleController extends Controller
             'role' => 'required|unique:roles',
         ]);
         $role->update($request->all());
-        return $role;
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $role
+        ]);
     }
 
     public function destroy($id)
     {
-        return Role::destroy($id);
+        $data = Role::destroy($id);
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function search($name)
     {
-        return Role::where('role', 'like', '%'.$name.'%')->get();
+        $data = Role::where('role', 'like', '%'.$name.'%')->get();
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 }

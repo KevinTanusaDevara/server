@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [

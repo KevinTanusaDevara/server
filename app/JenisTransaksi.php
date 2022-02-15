@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class JenisTransaksi extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'jenis_transaksi'
     ];

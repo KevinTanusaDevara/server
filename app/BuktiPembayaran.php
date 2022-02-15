@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuktiPembayaran extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'bukti_pembayaran'
     ];
