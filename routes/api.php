@@ -27,8 +27,8 @@ Route::post('register', 'AuthController@register');
 Route::get('logout', 'AuthController@logout');
 
 //*Profile
-Route::get('profile/{id}', 'UserController@user');
-Route::put('profile/{id}', 'UserController@update');
+Route::get('profile/{id}', 'UserController@profile');
+Route::put('profile/update/{id}', 'UserController@update');
 
 //*Transaksi
 Route::get('transaksi', 'TransaksiController@index');

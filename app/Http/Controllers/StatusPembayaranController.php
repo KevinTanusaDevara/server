@@ -9,7 +9,11 @@ class StatusPembayaranController extends Controller
 {
     public function index()
     {
-        return StatusPembayaran::all();
+        $data = StatusPembayaran::all();
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -18,31 +22,51 @@ class StatusPembayaranController extends Controller
             'status_pembayaran' => 'required|unique:status_pembayarans',
         ]);
 
-        return StatusPembayaran::create($request->all());
+        $data = StatusPembayaran::create($request->all());
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function show($id)
     {
-        return StatusPembayaran::find($id);
+        $data = StatusPembayaran::find($id);
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        $statusPembayaran = StatusPembayaran::find($id);
+        $data = StatusPembayaran::find($id);
         $request->validate([
             'status_pembayaran' => 'required|unique:status_pembayarans',
         ]);
-        $statusPembayaran->update($request->all());
-        return $statusPembayaran;
+
+        $data->update($request->all());
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function destroy($id)
     {
-        return StatusPembayaran::destroy($id);
+        $data = StatusPembayaran::destroy($id);
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function search($name)
     {
-        return StatusPembayaran::where('status_pembayaran', 'like', '%'.$name.'%')->get();
+        $data = StatusPembayaran::where('status_pembayaran', 'like', '%'.$name.'%')->get();
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 }

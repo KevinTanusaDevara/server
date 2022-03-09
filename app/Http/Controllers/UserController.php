@@ -2,17 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\User;
 
 class UserController extends Controller
 {
     public function profile(Request $request, $id)
     {
-        return $user = DB::table('users')
-        ->select(DB::raw('users.user_id, users.name, users.email, users.password, roles.role'))
-        ->join('roles', 'users.role_id', '=', 'roles.role_id')->get();
+        if($data = User::find($id) == null)
+        {
+            return response()->json([
+                'status'    => 'success',
+                'data'      => null
+            ]);
+        }
+
+        $data = DB::table('users')
+        ->select(DB::raw('users.id, users.name, users.email, users.password, roles.role, users.updated_at'))
+        ->join('roles', 'users.role_id', '=', 'roles.id')
+        ->where('users.id', '=', $id)->get();
+
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -21,12 +35,15 @@ class UserController extends Controller
 
         $request->validate([
             'name'      => 'required',
-            'email'     => 'required',
+            'role_id'   => 'required',
             'password'  => 'required|confirmed',
-            'role_id'   => 'required'
         ]);
 
-        $user->update($request->all());
+        $user->update([
+            'name'      => $request['name'],
+            'password'  => bcrypt($request['password']),
+            'role_id'   => $request['role_id']
+        ]);
 
         return response()->json([
             'status'    => 'success',

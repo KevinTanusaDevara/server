@@ -9,7 +9,11 @@ class JenisTransaksiController extends Controller
 {
     public function index()
     {
-        return JenisTransaksi::all();
+        $data = JenisTransaksi::all();
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -18,47 +22,55 @@ class JenisTransaksiController extends Controller
             'jenis_transaksi' => 'required|unique:jenis_transaksis',
         ]);
 
-        $jenistransaksi = JenisTransaksi::create($request->all());
+        $data = JenisTransaksi::create($request->all());
 
         return response()->json([
             'status'    => 'success',
-            'jenis_transaksi' => $jenistransaksi
+            'data' => $data
         ]);
     }
 
     public function show($id)
     {
-        return JenisTransaksi::find($id);
+        $data = JenisTransaksi::find($id);
+        return response()->json([
+            'status'    => 'success',
+            'data'      => $data
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        $jenisTransaksi = JenisTransaksi::find($id);
+        $data = JenisTransaksi::find($id);
 
         $request->validate([
             'jenis_transaksi' => 'required|unique:jenis_transaksis',
         ]);
 
-        $jenisTransaksi->update($request->all());
+        $data->update($request->all());
 
         return response()->json([
             'status'    => 'success',
-            'jenis_transaksi' => $jenistransaksi
+            'data' => $data
         ]);
     }
 
     public function destroy($id)
     {
-        $jenisTransaksi = JenisTransaksi::destroy($id);
+        $data = JenisTransaksi::destroy($id);
 
         return response()->json([
             'status'    => 'success',
-            'jenis_transaksi' => $jenistransaksi
+            'data' => $data
         ]);
     }
 
     public function search($name)
     {
-        return JenisTransaksi::where('jenis_transaksi', 'like', '%'.$name.'%')->get();
+        $data = JenisTransaksi::where('jenis_transaksi', 'like', '%'.$name.'%')->get();
+        return response()->json([
+            'status'    => 'success',
+            'data' => $data
+        ]);
     }
 }

@@ -7,6 +7,7 @@ use App\BuktiPembayaran;
 use App\StatusPembayaran;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaksi extends Model
 {
